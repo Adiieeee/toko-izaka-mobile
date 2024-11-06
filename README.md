@@ -34,3 +34,11 @@
    - const cocok untuk nilai yang benar-benar konstan dan tidak berubah sama sekali.
 2. Final
    - diinisialisasi pada waktu runtime.
+   - final tidak dapat digunakan untuk membuat objek konstan.
+   - final cocok untuk nilai yang mungkin baru diketahui saat runtime tetapi tidak boleh diubah setelah diinisialisasi.
+  
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.
+1. Membuat sebuah program Flutter baru dengan tema E-Commerce yang sesuai dengan tugas-tugas sebelumnya.
+   - Menjalankan flutter create toko_izaka pada direktori lokal
+   - Lakukan git init pada root folder dan lakukan add-commit-push proyek ke sebuah repositori baru di GitHub bernama toko-izaka-mobile
+2. 
