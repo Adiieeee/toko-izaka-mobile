@@ -41,4 +41,11 @@
 1. Membuat sebuah program Flutter baru dengan tema E-Commerce yang sesuai dengan tugas-tugas sebelumnya.
    - Menjalankan flutter create toko_izaka pada direktori lokal
    - Lakukan git init pada root folder dan lakukan add-commit-push proyek ke sebuah repositori baru di GitHub bernama toko-izaka-mobile
-2. 
+2. Membuat tiga tombol sederhana dengan ikon dan teks
+   - Buatlah file baru bernama menu.dart pada direktori toko_izaka/lib. Lalu tambahkan kode ini :
+   ```dart
+   import 'package:flutter/material.dart';
+   ```
+   - Dari file main.dart, pindahkan (cut) kode baris ke-39 hingga akhir yang berisi kedua class ini (MyHomePage, _MyHomePageState) ke file menu.dart
+   - 
+   
