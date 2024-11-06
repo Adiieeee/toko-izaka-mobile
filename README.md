@@ -23,4 +23,14 @@
 - Container : Menyediakan wadah yang fleksibel.
 - Material : Memberikan gaya dan efek Material Design pada widget anaknya.
 
-###
+### Apa fungsi dari setState()? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut.
+- Fungsi setState() dalam Flutter digunakan di dalam StatefulWidget untuk memberitahukan framework bahwa ada perubahan pada state yang memerlukan pembaruan tampilan. Ketika setState() dipanggil, Flutter akan melakukan rebuild pada widget yang terkait, menampilkan versi terbaru dari tampilan sesuai perubahan yang terjadi pada variabel atau data di dalam state.
+- Variable yang terdampak dari fungsi setState() adalah variable yang didefinisikan di dalam State dari StatefulWidget.
+
+### Jelaskan perbedaan antara const dengan final.
+1. Const
+   - diinisialisasi pada waktu kompilasi.
+   - const dapat digunakan untuk membuat objek konstan.
+   - const cocok untuk nilai yang benar-benar konstan dan tidak berubah sama sekali.
+2. Final
+   - diinisialisasi pada waktu runtime.
