@@ -140,7 +140,7 @@
       }
      ```
 
-### Mengimplementasikan warna-warna yang berbeda untuk setiap tombol (Lihat Daftar Produk, Tambah Produk, dan Logout).
+3. Mengimplementasikan warna-warna yang berbeda untuk setiap tombol (Lihat Daftar Produk, Tambah Produk, dan Logout).
 - pada menu.dart tambahkan field colors pada class ItemHomePage menjadi seperti ini
   ```dart
   class ItemHomepage {
@@ -217,5 +217,5 @@
    }
   ```
 
-### Memunculkan Snackbar
+4. Memunculkan Snackbar
 - Hal ini sudah dilakukan saat menambahkan button
