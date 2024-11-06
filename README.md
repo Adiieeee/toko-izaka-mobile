@@ -47,5 +47,172 @@
    import 'package:flutter/material.dart';
    ```
    - Dari file main.dart, pindahkan (cut) kode baris ke-39 hingga akhir yang berisi kedua class ini (MyHomePage, _MyHomePageState) ke file menu.dart
-   - 
-   
+   - Tambahkan line ini `import 'package:mental_health_tracker/menu.dart';` ke line pertama di main.dart
+   - Pada berkas main.dart, hapus `const MyHomePage(title: 'Flutter Demo Home Page')` sehingga cukup menjadi `MyHomePage()`
+   - Pada berkas menu.dart hapus semua isi dari class MyHomePage
+   - Ubah ... extends StatefulWidget menjadi ... extends StatelessWidget pada class MyHomePage
+   - Menambahkan MyHomePage({super.key}); sebagai constructor class MyHomePage.
+   - Menghapus seluruh class class _MyHomePageState extends State<MyHomePage>
+   - Menambahkan Widget build
+     ```dart
+     class MyHomePage extends StatelessWidget {
+      MyHomePage({super.key});
+
+      @override
+      Widget build(BuildContext context) {
+	    return Scaffold(
+        ...
+	    );
+      }
+     }
+     ```
+   - Pada berkas menu.dart, letakkan kode di bawah ini
+     ```dart
+     class ItemHomepage {
+        final String name;
+        final IconData icon;
+
+        ItemHomepage(this.name, this.icon);
+     }
+     ```
+   - buat list of ItemHomepage yang berisi tombol-tombol yang ingin kamu tambahkan pada class MyHomePage
+     ```dart
+     final List<ItemHomepage> items = [
+         ItemHomepage("Lihat Mood", Icons.mood),
+         ItemHomepage("Tambah Mood", Icons.add),
+         ItemHomepage("Logout", Icons.logout),
+     ];
+     ```
+   - buat class ItemCard untuk menampilkan tombol-tombol dan menampilkan snackbar yang berisi pesan "Kamu telah menekan tombol [nama button]"
+     ```dart
+     class ItemCard extends StatelessWidget {
+        // Menampilkan kartu dengan ikon dan nama.
+
+        final ItemHomepage item; 
+  
+        const ItemCard(this.item, {super.key}); 
+
+        @override
+        Widget build(BuildContext context) {
+          return Material(
+            // Menentukan warna latar belakang dari tema aplikasi.
+            color: Theme.of(context).colorScheme.secondary,
+            // Membuat sudut kartu melengkung.
+            borderRadius: BorderRadius.circular(12),
+      
+            child: InkWell(
+              // Aksi ketika kartu ditekan.
+              onTap: () {
+                // Menampilkan pesan SnackBar saat kartu ditekan.
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
+                  );
+              },
+              // Container untuk menyimpan Icon dan Text
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                child: Center(
+                  child: Column(
+                    // Menyusun ikon dan teks di tengah kartu.
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        item.icon,
+                        color: Colors.white,
+                        size: 30.0,
+                      ),
+                      const Padding(padding: EdgeInsets.all(3)),
+                      Text(
+                        item.name,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+  
+      }
+     ```
+
+### Mengimplementasikan warna-warna yang berbeda untuk setiap tombol (Lihat Daftar Produk, Tambah Produk, dan Logout).
+- pada menu.dart tambahkan field colors pada class ItemHomePage menjadi seperti ini
+  ```dart
+  class ItemHomepage {
+     final String name;
+     final IconData icon;
+     final Color color;
+
+     ItemHomepage(this.name, this.icon, this.color);
+  }
+  ```
+- Pada List<ItemHomePage> items, tambahkan field color sesuai keinginan untuk color buttonnya
+  ```dart
+  final List<ItemHomepage> items = [
+    ItemHomepage("Lihat Daftar Produk", Icons.mood, Colors.blue),
+    ItemHomepage("Tambah Produk", Icons.add, Colors.green),
+    ItemHomepage("Logout", Icons.logout, Colors.red),
+  ];
+  ```
+- Pada Class ItemCard extend StatelessWidget tambahkan variable color pada fungsi Widget build pada bagian child: Container
+  ```dart
+  class ItemCard extends StatelessWidget {
+     // Menampilkan kartu dengan ikon dan nama.
+
+     final ItemHomepage item;
+
+     const ItemCard(this.item, {super.key});
+
+     @override
+     Widget build(BuildContext context) {
+       return Material(
+         // Menentukan warna latar belakang dari tema aplikasi.
+         color: Theme.of(context).colorScheme.secondary,
+         // Membuat sudut kartu melengkung.
+         borderRadius: BorderRadius.circular(12),
+
+         child: InkWell(
+           // Aksi ketika kartu ditekan.
+           onTap: () {
+             // Menampilkan pesan SnackBar saat kartu ditekan.
+             ScaffoldMessenger.of(context)
+               ..hideCurrentSnackBar()
+               ..showSnackBar(
+                 SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
+               );
+           },
+           // Container untuk menyimpan Icon dan Text
+           child: Container(
+             color: item.color,
+             padding: const EdgeInsets.all(8),
+             child: Center(
+               child: Column(
+                 // Menyusun ikon dan teks di tengah kartu.
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: [
+                   Icon(
+                     item.icon,
+                     color: Colors.white,
+                     size: 30.0,
+                   ),
+                   const Padding(padding: EdgeInsets.all(3)),
+                   Text(
+                     item.name,
+                     textAlign: TextAlign.center,
+                     style: const TextStyle(color: Colors.white),
+                   ),
+                 ],
+               ),
+             ),
+           ),
+         ),
+       );
+     }
+  
+   }
+  ```
