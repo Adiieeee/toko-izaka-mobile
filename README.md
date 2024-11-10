@@ -219,3 +219,28 @@
 
 4. Memunculkan Snackbar
 - Hal ini sudah dilakukan saat menambahkan button
+
+
+# Tugas 8 PBP
+### Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
+- const digunakan untuk mendefinisikan nilai yang bersifat tetap (immutable) dan dapat dihitung pada waktu kompilasi (compile-time constant)
+- keuntungan menggunakan const :
+  1. Mengurangi beban render
+  2. menghemat penggunaan memori
+  3. membantu mencegah perubahan nilai yang tidak sengaja, yang bisa menyebabkan bug
+- Gunakan const pada widget yang tidak berubah selama siklus hidup aplikasi, seperti teks statis, padding, margin, atau warna tetap atau ketika menggunakan nilai tetap seperti angka, string, Color, atau EdgeInsets, gunakan const untuk memastikan nilai tersebut tidak berubah.
+- Jangan gunakan const pada widget yang memiliki nilai dinamis atau yang berubah seiring waktu.
+
+### Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+- Column digunakan untuk menata widget secara vertikal dari atas ke bawah sementara Row digunakan untuk menata widget secara horizontal dari kiri ke kanan.
+- untuk column digunakan pada form entry item dimana saat kita memasukan data, letak inputnya menggunakan column dari atas kebawah
+- untuk row digunakan untuk tombol lihat produk, tambah produk dan logout, letaknya dari kanan ke kiri
+
+### Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+- pada tugas ini saya elemen input yang saya gunakan adalah TextFormField, elemen ini digunakan untuk menerima input teks dari pengguna. value dari TextFormFieldnya adalah strings dan integer. Untuk elemen flutter lainnya yang tidak digunakan adalah DropdownButtonFormField, Switch, DatePicker, dan Radio.
+
+### Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+- Cara mengatur tema di aplikasi Flutter ini adalah dengan dengan mendefinisikan skema warna menggunakan ThemeData dan ColorScheme dan menggunakan blackSwatch sebagai primarySwatch dalam ThemeData di main.dart
+
+### Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+- Cara menangani navigasu dalam aplikasi adalah dengan menggunakan Navigator.push, Navigator.pushReplacement, Navigator.pop dan drawer. Navigator push berguna untuk berpindah ke halaman lain dengan kondisi halaman baru ditambahkan ke tumpukan stack sehingga ketika kembali, maka akan kembali ke halaman sebelumnya. Navigatoor push Replacement berguna untuk menggantikan halaman sekarang dengan halaman yang baru tanpa mempush halaman baru ke stack. Navigator pop berguna untuk mempop halaman sekarang dan kembali ke halaman sebelumnya di stack. drawer berguna sebagai navigator di samping untuk akses mudah ke berbagai pilihan fitur.
