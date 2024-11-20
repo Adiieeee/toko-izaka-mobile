@@ -244,3 +244,11 @@
 
 ### Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
 - Cara menangani navigasu dalam aplikasi adalah dengan menggunakan Navigator.push, Navigator.pushReplacement, Navigator.pop dan drawer. Navigator push berguna untuk berpindah ke halaman lain dengan kondisi halaman baru ditambahkan ke tumpukan stack sehingga ketika kembali, maka akan kembali ke halaman sebelumnya. Navigatoor push Replacement berguna untuk menggantikan halaman sekarang dengan halaman yang baru tanpa mempush halaman baru ke stack. Navigator pop berguna untuk mempop halaman sekarang dan kembali ke halaman sebelumnya di stack. drawer berguna sebagai navigator di samping untuk akses mudah ke berbagai pilihan fitur.
+
+
+
+# Tugas 9 PBP
+### Memastikan deployment proyek tugas Django kamu telah berjalan dengan baik.
+- Projek Django saya sudah berjalan dengan sesuai
+
+### 
