@@ -800,5 +800,3 @@ class _RegisterPageState extends State<RegisterPage> {
 - Tempel data JSON yang telah disalin sebelumnya ke dalam textbox yang tersedia pada Quicktype.
 - Klik pilihan Copy Code pada Quicktype.
 - buka kembali proyek Flutter dan buatlah folder baru models/ pada subdirektori lib/. Buatlah file baru pada folder tersebut dengan nama item_entry.dart, dan tempel kode yang sudah disalin dari Quicktype.
-
-### Membuat halaman yang berisi daftar semua item yang terdapat pada endpoint JSON di Django yang telah kamu deploy.
