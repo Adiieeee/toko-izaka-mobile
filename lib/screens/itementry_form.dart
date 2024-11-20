@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:toko_izaka/widgets/left_drawer.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:toko_izaka/screens/menu.dart';
 
 class ItemEntryFormPage extends StatefulWidget {
   const ItemEntryFormPage({super.key});
@@ -12,10 +17,12 @@ class _ItemEntryFormPageState extends State<ItemEntryFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _name = "";
 	String _description = "";
-	int _ammount = 0;
+	int _price = 0;
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -26,7 +33,39 @@ class _ItemEntryFormPageState extends State<ItemEntryFormPage> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back))
+          IconButton(onPressed: () async{
+            if (_formKey.currentState!.validate()) {
+              // Kirim ke Django dan tunggu respons
+              // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+              final response = await request.postJson(
+                "http://127.0.0.1:8000/create-flutter/",
+                jsonEncode(<String, String>{
+                  'name': _name,
+                  'price': _price.toString(),
+                  'description': _description,
+                  // TODO: Sesuaikan field data sesuai dengan aplikasimu
+                }),
+              );
+              if (context.mounted) {
+                if (response['status'] == 'success') {
+                  ScaffoldMessenger.of(context)
+                    .showSnackBar(const SnackBar(
+                  content: Text("Mood baru berhasil disimpan!"),
+                  ));
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyHomePage()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context)
+                    .showSnackBar(const SnackBar(
+                    content:
+                      Text("Terdapat kesalahan, silakan coba lagi."),
+                  ));
+                }
+              }
+            }
+          }, icon: Icon(Icons.arrow_back))
         ],
       ),
       drawer: const LeftDrawer(),
@@ -86,23 +125,23 @@ class _ItemEntryFormPageState extends State<ItemEntryFormPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: "Jumlah Item",
-                    labelText: "Masukkan Jumlah Item",
+                    hintText: "Harga Item",
+                    labelText: "Masukkan Harga Item",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
                   onChanged: (String? value) {
                     setState(() {
-                      _ammount = int.tryParse(value!) ?? 0;
+                      _price = int.tryParse(value!) ?? 0;
                     });
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return "Jumlah Item tidak boleh kosong!";
+                      return "Harga Item tidak boleh kosong!";
                     }
                     if (int.tryParse(value) == null) {
-                      return "Jumlah Item harus berupa angka!";
+                      return "Harga Item harus berupa angka!";
                     }
                     return null;
                   },
@@ -130,7 +169,7 @@ class _ItemEntryFormPageState extends State<ItemEntryFormPage> {
                                   children: [
                                     Text('Nama: $_name'),
                                     Text('Deskripsi: $_description'),
-                                    Text('Jumlah: $_ammount'),
+                                    Text('Harga: $_price'),
                                   ],
                                 ),
                               ),
